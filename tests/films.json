@@ -52,5 +52,31 @@
 				,"birthday" : "1944-12-17"
 			}
 		]
+		,"Test Same Multiple" : [
+			{
+				"name" : "Clint Eastwood"
+				,"birthday" : "1930-05-21"
+			}
+			,{
+				"name" : "Isaiah Washington"
+				,"birthday" : "1963-05-21"
+			}
+			,{
+				"name" : "LisaGay Hamilton"
+				,"birthday" : "1964-03-25"
+			}
+			,{
+				"name" : "James Woods"
+				,"birthday" : "1947-04-18"
+			}
+			,{
+				"name" : "Denis Leary"
+				,"birthday" : "1957-04-18"
+			}
+			,{
+				"name" : "Bernard Hill"
+				,"birthday" : "1944-04-18"
+			}
+		]
 	}
 }

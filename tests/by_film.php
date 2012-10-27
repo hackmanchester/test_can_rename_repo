@@ -71,4 +71,13 @@ class ByFilm extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(count($birthday['actors']),2);
 		$this->assertEquals($birthday['film'],$film);
 	}
+	public function testOneFilmMultipleCommonBirthdayReturnsDateActors() {
+		// in this film we have added a common birthday of 05-21 to 2 actors and of 04-18 to 3 actors
+		$film='Test Same Multiple';
+		$process=$this->newProcess();
+		$birthday=$process->getFilmCommonBirthdays($film);
+		$this->assertEquals($birthday['date'],'04-18');
+		$this->assertEquals(count($birthday['actors']),3);
+		$this->assertEquals($birthday['film'],$film);
+	}
 }

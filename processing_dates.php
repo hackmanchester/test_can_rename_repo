@@ -23,10 +23,10 @@ class dateProcessing extends processing {
 		}
 		arsort($film_counts);
 		if (reset($film_counts)>1) {
-			$birthdays=array_keys($birthdays);
-			$date=$birthdays[0];
-			$birthday_actors=$birthday_actors[$date];
-			return array('date'=>$date,'actors'=>$birthday_actors);
+			$film=array_keys($film_counts);
+			$film=$film[0];
+			$film_actors=$film_actors[$film];
+			return array('film'=>$film,'actors'=>$film_actors);
 		}
 		else {
 			return array('film'=>'','actors'=>'');

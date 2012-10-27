@@ -4,7 +4,7 @@ include '../processing.php';
 class ByFilm extends PHPUnit_Framework_TestCase {
 	private $type='films';
 
-	// these are only needed for testing, as real class will have these passed in constructor or method calls
+	// this is only needed for testing, as real class will have these passed in constructor or method calls
 	private function getJSON($file) {
 		$file.='.json';
 		$fh=fopen($file,'r');
@@ -25,7 +25,7 @@ class ByFilm extends PHPUnit_Framework_TestCase {
 	}
 	public function testValidJSON() {
 		$json=$this->getJSON($this->type);
-		$array=filmProcessing::decodeJSON($json);
+		$array=filmProcessing::_decodeJSON($json);
 		$this->assertTrue(!empty($array));
 		$this->assertTrue(is_array($array));
 	}
@@ -34,6 +34,12 @@ class ByFilm extends PHPUnit_Framework_TestCase {
 		$this->assertTrue(!empty($process->data));
 		$this->assertTrue(is_array($process->data));
 	}
+	public function testRemoveYear() {
+		$date='2012-10-27';
+		$date=filmProcessing::_removeYear($date);
+		$this->assertEquals($date,'10-27');
+	}
+
 	/**
      * 
      * @expectedException Exception
@@ -49,10 +55,20 @@ class ByFilm extends PHPUnit_Framework_TestCase {
 		$this->assertTrue(is_array($actors));
 	}
 	public function testOneFilmNoCommonBirthdaysReturnsEmptyArray() {
+		$film='True Crime';
 		$process=$this->newProcess();
-		$birthday=$process->getCommonBirthdays('True Crime');
+		$birthday=$process->getFilmCommonBirthdays($film);
 		$this->assertTrue(empty($birthday['date']));
 		$this->assertTrue(empty($birthday['actors']));
-		$this->assertEquals($birthday['film'],'True Crime');
+		$this->assertEquals($birthday['film'],$film);
+	}
+	public function testOneFilmOneCommonBirthdayReturnsDateActors() {
+		// in this film we have added a common birthday of 05-21 to 2 actors
+		$film='Test Same';
+		$process=$this->newProcess();
+		$birthday=$process->getFilmCommonBirthdays($film);
+		$this->assertEquals($birthday['date'],'05-21');
+		$this->assertEquals(count($birthday['actors']),2);
+		$this->assertEquals($birthday['film'],$film);
 	}
 }

@@ -14,10 +14,6 @@ class ByFilm extends PHPUnit_Framework_TestCase {
 		}
 		return $json;
 	}
-	private function getJSONFormatted($file) {
-		$json=$this->getJSON($file);
-		return '"'.$json.'"';
-	}
 
 	public function testLoadsJSONFile () {
 		$json=$this->getJSON($this->type);
@@ -25,7 +21,14 @@ class ByFilm extends PHPUnit_Framework_TestCase {
 	}
 	public function testValidJSON () {
 		$json=$this->getJSON($this->type);
-		$array=json_decode($json);
+		$array=filmProcessing::decodeJSON($json);
 		$this->assertTrue(!empty($array));
+		$this->assertTrue(is_array($array));
+	}
+	public function testConstructor () {
+		$json=$this->getJSON($this->type);
+		$process=new filmProcessing($json);
+		$this->assertTrue(!empty($process->data));
+		$this->assertTrue(is_array($process->data));
 	}
 }

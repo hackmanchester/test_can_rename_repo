@@ -1,19 +1,21 @@
 <?php
 
-class filmProcessing {
+class processing {
 	public $data;
 
-	function __construct($data) {
-		$this->data=$this->_decodeJSON($data);
+	function __construct($data,$json=false) {
+		$this->data=$json ? $this->_decodeJSON($data) : $data;
 	}
 	public function _decodeJSON($string) {
 		// set $assoc = true to return an array
 		return json_decode($string,true);
 	}
 	public function _removeYear($date) {
-		$date=substr($date,5);
-		return $date;
+		return substr_count($date,'-')==2 ? substr($date,5) : $date;
 	}
+}
+
+class filmProcessing extends processing {
 
 	public function getFilmActors($film) {
 		$film=$this->data['films'][$film];
@@ -50,7 +52,7 @@ class filmProcessing {
 		$birthdays=$birthday_counts=array();
 		foreach ($this->data['films'] as $film => $actors) {
 			$birthdays[$film]=$this->getActorsCommonBirthdays($actors);
-			$birthday_counts[$film]=(is_array($birthdays[$film]['actors']) ? count($birthdays[$film]['actors']) : null);
+			$birthday_counts[$film]=is_array($birthdays[$film]['actors']) ? count($birthdays[$film]['actors']) : null;
 		}
 		arsort($birthday_counts);
 		if (reset($birthday_counts)>0) {
@@ -64,4 +66,8 @@ class filmProcessing {
 			return array('date'=>'','actors'=>'','film'=>'');
 		}
 	}
+}
+
+class dateProcessing extends processing {
+
 }

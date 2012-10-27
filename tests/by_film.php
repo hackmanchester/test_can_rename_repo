@@ -1,45 +1,15 @@
 <?php
-include '../processing.php';
+include 'base.php';
 
-class ByFilm extends PHPUnit_Framework_TestCase {
-	private $type='films';
+class ByFilm extends ProcessingTests {
+	protected $type='films';
 
-	// this is only needed for testing, as real class will have these passed in constructor or method calls
-	private function getJSON($file) {
-		$file.='.json';
-		$fh=fopen($file,'r');
-		if (!empty($fh)) {
-			$json=fread($fh,filesize($file));
-			fclose($fh);
-		}
-		return $json;
-	}
-	private function newProcess() {
+	protected function newProcess() {
 		$json=$this->getJSON($this->type);
-		return new filmProcessing($json);
+		return new filmProcessing($json,true);
 	}
 
-	public function testLoadsJSONFile() {
-		$json=$this->getJSON($this->type);
-		$this->assertTrue(!empty($json));
-	}
-	public function testValidJSON() {
-		$json=$this->getJSON($this->type);
-		$array=filmProcessing::_decodeJSON($json);
-		$this->assertTrue(!empty($array));
-		$this->assertTrue(is_array($array));
-	}
-	public function testConstructor() {
-		$process=$this->newProcess();
-		$this->assertTrue(!empty($process->data));
-		$this->assertTrue(is_array($process->data));
-	}
-	public function testRemoveYear() {
-		$date='2012-10-27';
-		$date=filmProcessing::_removeYear($date);
-		$this->assertEquals($date,'10-27');
-	}
-
+	// now we move on to actual callable functions
 	/**
      * 
      * @expectedException Exception

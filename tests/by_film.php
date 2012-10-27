@@ -80,4 +80,22 @@ class ByFilm extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(count($birthday['actors']),3);
 		$this->assertEquals($birthday['film'],$film);
 	}
+	public function testMultipleFilmsMultipleCommonBirthdayReturnsFilmDateActors() {
+		// using existing data we should parse three films and return most birthdays. Should be Test Same Multiple
+		$film='Test Same Multiple';
+		$process=$this->newProcess();
+		$birthday=$process->getCommonBirthdays();
+		$this->assertEquals($birthday['date'],'04-18');
+		$this->assertEquals(count($birthday['actors']),3);
+		$this->assertEquals($birthday['film'],$film);
+	}
+	public function testMultipleFilmsNoCommonBirthdayReturnsEmptyArray() {
+		// using existing data we should parse three films and return most birthdays
+		$this->type='films-no-birthdays';
+		$process=$this->newProcess();
+		$birthday=$process->getCommonBirthdays();
+		$this->assertEquals($birthday['date'],'');
+		$this->assertEquals($birthday['actors'],'');
+		$this->assertEquals($birthday['film'],'');
+	}
 }

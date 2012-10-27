@@ -48,4 +48,12 @@ class ByDate extends ProcessingTests {
 		$this->assertEquals(count($birthday['actors']),3);
 		$this->assertEquals($birthday['film'],'The Matrix');
 	}
+	public function testMultipleDateMultipleCommonFilmsReturnsMostOccuringBirthday() {
+		$date='07-21';
+		$process=$this->newProcess();
+		$birthday=$process->getCommonBirthdays($date);
+		$this->assertEquals($birthday['date'],$date);
+		$this->assertEquals(count($birthday['actors']),3);
+		$this->assertEquals($birthday['film'],'The Matrix');
+	}
 }

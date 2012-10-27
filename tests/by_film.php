@@ -14,21 +14,38 @@ class ByFilm extends PHPUnit_Framework_TestCase {
 		}
 		return $json;
 	}
+	private function newProcess() {
+		$json=$this->getJSON($this->type);
+		return new filmProcessing($json);
+	}
 
-	public function testLoadsJSONFile () {
+	public function testLoadsJSONFile() {
 		$json=$this->getJSON($this->type);
 		$this->assertTrue(!empty($json));
 	}
-	public function testValidJSON () {
+	public function testValidJSON() {
 		$json=$this->getJSON($this->type);
 		$array=filmProcessing::decodeJSON($json);
 		$this->assertTrue(!empty($array));
 		$this->assertTrue(is_array($array));
 	}
-	public function testConstructor () {
-		$json=$this->getJSON($this->type);
-		$process=new filmProcessing($json);
+	public function testConstructor() {
+		$process=$this->newProcess();
 		$this->assertTrue(!empty($process->data));
 		$this->assertTrue(is_array($process->data));
+	}
+	/**
+     * 
+     * @expectedException Exception
+     */
+	public function testBlankFilmThrowsException() {
+		$process=$this->newProcess();
+		$process->getFilmActors('Doesnt Exist');
+	}
+	public function testFilmHasActors() {
+		$process=$this->newProcess();
+		$actors=$process->getFilmActors('True Crime');
+		$this->assertTrue(!empty($actors));
+		$this->assertTrue(is_array($actors));
 	}
 }

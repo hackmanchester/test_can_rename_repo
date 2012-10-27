@@ -17,4 +17,19 @@ class filmProcessing {
 		}
 		return $film;
 	}
+	public function getCommonBirthdays($film) {
+		$actors=$this->getFilmActors($film);
+		$birthdays=$birthday_names=array();
+		foreach ($actors as $actor) {
+			$birthdays[$actor['birthday']]++;
+			$birthday_names[$actor['birthday']][]=$actor['name'];
+		}
+		arsort($birthdays);
+		if (reset($birthdays)>1) {
+
+		}
+		else {
+			return array('date'=>'','actors'=>'','film'=>$film);
+		}
+	}
 }

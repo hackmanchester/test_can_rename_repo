@@ -48,4 +48,11 @@ class ByFilm extends PHPUnit_Framework_TestCase {
 		$this->assertTrue(!empty($actors));
 		$this->assertTrue(is_array($actors));
 	}
+	public function testOneFilmNoCommonBirthdaysReturnsEmptyArray() {
+		$process=$this->newProcess();
+		$birthday=$process->getCommonBirthdays('True Crime');
+		$this->assertTrue(empty($birthday['date']));
+		$this->assertTrue(empty($birthday['actors']));
+		$this->assertEquals($birthday['film'],'True Crime');
+	}
 }

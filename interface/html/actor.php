@@ -5,7 +5,7 @@ $date = array_key_exists('date', $_GET) ? $_GET['date'] : null;
 $date = substr($date, 8, 2) . '-' . substr($date, 5, 2);
 
 // Connect to database
-$m = new Mongo();
+$m = new Mongo("http://54.247.71.60:27017");
 $db = $m->actor_birthdays;
 
 // Get the collection

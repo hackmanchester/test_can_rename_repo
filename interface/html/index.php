@@ -50,7 +50,7 @@ if (array_key_exists('actor', $_GET))
 
 	<div class="column span5">
 
-		<form class="span4 form-horizontal well">
+		<form class="span5 form-horizontal well">
 
 			<div class="control-group">
 				<div class="input-append">
@@ -68,7 +68,7 @@ if (array_key_exists('actor', $_GET))
 					<label class="control-label" for="inputDateButton">Date</label>
 
 					<div class="controls">
-						<input type="date" id="inputDateButton" name="date" placeholder="21 09">
+						<input type="date" id="inputDateButton" name="date" placeholder="21/09/1950">
 						<button class="btn" type="button"><i class="icon-list"></i> Go!</button>
 					</div>
 				</div>
@@ -87,10 +87,10 @@ if (array_key_exists('actor', $_GET))
 
 		</form>
 
-		<hr class="span4">
+		<hr class="span5">
 
-		<div class="row span4 well">
-			<div class="span4 outpust">
+		<div class="row span5 well">
+			<div class="span5 outpust">
 				<h2>Output</h2>
                 <ul>
                 <?php

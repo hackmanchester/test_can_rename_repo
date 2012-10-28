@@ -36,5 +36,5 @@ for month in months:
 
             actor_birthdays.insert(records)
 
-    num = actor_birthdays.count()
-    print '%s: Added %s records' % (month, num)
+        num = actor_birthdays.count()
+        print '%s-%s: Added %s records' % (month, day , num)

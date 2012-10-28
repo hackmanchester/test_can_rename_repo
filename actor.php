@@ -1,5 +1,7 @@
 <?php
 
+// will be replacing this with the compiling class
+
 $actor = array_key_exists('actor', $_GET) ? $_GET['actor'] : null;
 $date = array_key_exists('date', $_GET) ? $_GET['date'] : null;
 $date = substr($date, 8, 2) . '-' . substr($date, 5, 2);

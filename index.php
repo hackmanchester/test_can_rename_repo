@@ -1,5 +1,4 @@
 <?php
-
 if (array_key_exists('actor', $_GET))
     include 'actor.php';
 
@@ -13,9 +12,9 @@ if (array_key_exists('actor', $_GET))
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link href="../assets/css/bootstrap.css" rel="stylesheet">
-	<link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="../assets/css/bacon.css" rel="stylesheet">
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="assets/css/bacon.css" rel="stylesheet">
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -23,8 +22,8 @@ if (array_key_exists('actor', $_GET))
 	<![endif]-->
 
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="../assets/js/bootstrap.min.js"></script>
-	<script src="../assets/js/bacon.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/bacon.js"></script>
 </head>
 
 

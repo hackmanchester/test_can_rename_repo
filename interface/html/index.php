@@ -1,3 +1,9 @@
+<?php
+
+if (array_key_exists('actor', $_GET))
+    include 'actor.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +50,7 @@
 
 	<div class="column span5">
 
-		<form action="actor.php" class="span4 form-horizontal well">
+		<form class="span4 form-horizontal well">
 
 			<div class="control-group">
 				<div class="input-append">
@@ -62,7 +68,7 @@
 					<label class="control-label" for="inputDateButton">Date</label>
 
 					<div class="controls">
-						<input type="text" id="inputDateButton" placeholder="21 09">
+						<input type="date" id="inputDateButton" name="date" placeholder="21 09">
 						<button class="btn" type="button"><i class="icon-list"></i> Go!</button>
 					</div>
 				</div>
@@ -86,11 +92,15 @@
 		<div class="row span4 well">
 			<div class="span4 outpust">
 				<h2>Output</h2>
-
-				<ul>
-					<li>one</li>
-					<li>two</li>
-				</ul>
+                <ul>
+                <?php
+                    if (isset($data)) {
+                        foreach ($data as $d) {
+                            echo "<li>{$d}</li>";
+                        }
+                    }
+                ?>
+                </ul>
 			</div>
 		</div>
 

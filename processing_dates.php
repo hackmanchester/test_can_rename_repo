@@ -21,16 +21,7 @@ class dateProcessing extends processing {
 				$film_actors[$film][]=$actor;
 			}
 		}
-		arsort($film_counts);
-		if (reset($film_counts)>1) {
-			$film=array_keys($film_counts);
-			$film=$film[0];
-			$film_actors=$film_actors[$film];
-			return array('film'=>$film,'actors'=>$film_actors);
-		}
-		else {
-			return array('film'=>'','actors'=>'');
-		}
+		return $this->getMostCommonFilmBirthdays($film_counts,$film_actors);
 	}
 	public function getCommonBirthdays() {
 		$birthdays=$birthday_counts=array();

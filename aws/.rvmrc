@@ -1,0 +1,3 @@
+rvm --create use @hack_manchester
+bundle check || bundle 
+

@@ -9,6 +9,7 @@ end
 
 n=0
 CSV.foreach("../data/performance.tsv",{:col_sep=>"\t", :headers=>true, :return_headers => true, :header_converters => :symbol, :converters => :all}) do |row|
+	break if n > 1000
 	performance = Hash[row.headers[0..-1].zip(row.fields[0..-1])]
 	unless performance[:actor]==nil or performance[:film]!=nil then
 		performances << {:actor => performance[:actor] , :film => performance[:film]}

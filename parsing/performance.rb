@@ -17,4 +17,5 @@ CSV.foreach("../data/performance.tsv",{:col_sep=>"\t", :headers=>true, :return_h
 	end
 end
 
+# database code can go here
 File.open('performances', 'w') {|f| f.write(performances) }
